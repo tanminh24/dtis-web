@@ -52,7 +52,7 @@ function toggleMenu() {
 
 
 var myCarousel = new bootstrap.Carousel(document.querySelector('#partnerCarousel'), {
-    interval: 4000,
+    interval: 3000,
     wrap: true
 });
 
