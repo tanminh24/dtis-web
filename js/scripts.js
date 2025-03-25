@@ -55,3 +55,64 @@ var myCarousel = new bootstrap.Carousel(document.querySelector('#partnerCarousel
     interval: 4000,
     wrap: true
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    emailjs.init("zkhjbzS-68dQdFhGg");
+
+    document.getElementById("contactForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const formData = {
+            from_name: document.getElementById("name").value,
+            from_email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            message: document.getElementById("message").value
+        };
+
+        console.log("Sending data:", formData);
+
+        emailjs.send("service_dtisweb", "template_dtisweb", formData)
+            .then(function (response) {
+                console.log("Success:", response);
+                showToast("Message sent successfully!", "#28a745");
+                document.getElementById("contactForm").reset();
+            })
+            .catch(function (error) {
+                console.error("Error:", error);
+                showToast("Error sending message! Try again.", "#dc3545");
+            });
+    });
+});
+
+function showToast(message, color) {
+    let isMobile = window.innerWidth <= 768;
+    Toastify({
+        text: message,
+        duration: 4000,
+        gravity: "top",
+        position: isMobile ? "center" : "right",
+        backgroundColor: color,
+        style: {
+            fontSize: "16px",
+            fontWeight: "bold",
+            padding: "15px 25px",
+            borderRadius: "6px",
+        }
+    }).showToast();
+}
+
+function showToast(message, color) {
+    Toastify({
+        text: message,
+        duration: 4000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: color,
+        style: {
+            fontSize: "16px",
+            fontWeight: "bold",
+            padding: "15px 25px",
+            borderRadius: "6px",
+        }
+    }).showToast();
+}
