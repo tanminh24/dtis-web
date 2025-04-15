@@ -45,13 +45,11 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-function toggleMenu() {
-    var menu = document.getElementById("floatingMenu");
-    menu.classList.toggle("show");
-}
-
-
 var myCarousel = new bootstrap.Carousel(document.querySelector('#partnerCarousel'), {
+    interval: 3000,
+    wrap: true
+});
+var myCarousel2 = new bootstrap.Carousel(document.querySelector('#partnerCarousel2'), {
     interval: 3000,
     wrap: true
 });
